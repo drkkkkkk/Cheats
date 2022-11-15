@@ -1,18 +1,37 @@
-local plr = game.Players.LocalPlayer
-local SGUI = game:GetService("StarterGui")
+-- Gui to Lua
+-- Version: 3.2
 
-SGUI:SetCore("SendNotification", {
-	Title = "Executed Sucessfully";
-	Text = "Well Enjoy the Script!";
-})
+-- Instances:
 
-plr.Chatted:Connect(function (msg)
-	if msg == plr.Name or "!Go" then
-		while wait(1) do
-			local part = Instance.new("MeshPart")
-			part.Name = "Gift"
-			part.Parent = game.Workspace
-			plr.Character.HumanoidRootPart.CFrame = part.CFrame + Vector3.new(0,5,0)
+local InsertedObjects = Instance.new("ScreenGui")
+
+--Properties:
+
+InsertedObjects.Name = "InsertedObjects"
+InsertedObjects.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+-- Scripts:
+
+local function VHZB_fake_script() -- InsertedObjects.LocalScript 
+	local script = Instance.new('LocalScript', InsertedObjects)
+
+	local plr = game.Players.LocalPlayer
+	local SGUI = game:GetService("StarterGui")
+	
+	SGUI:SetCore("SendNotification", {
+		Title = "Executed Sucessfully";
+		Text = "Well Enjoy the Script!";
+	})
+	
+	plr.Chatted:Connect(function (msg)
+		if msg == plr.Name or "!Go PieTro" then
+			while wait(1) do
+				local part = Instance.new("MeshPart")
+				part.Name = "Gift"
+				part.Parent = game.Workspace
+				plr.Character.HumanoidRootPart.CFrame = part.CFrame + Vector3.new(0,5,0)
+			end
 		end
-	end
-end)
+	end)
+end
+coroutine.wrap(VHZB_fake_script)()
