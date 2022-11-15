@@ -1,39 +1,18 @@
--- Gui to Lua
--- Version: 3.2
+local plr = game.Players.LocalPlayer
+local SGUI = game:GetService("StarterGui")
 
--- Instances:
+SGUI:SetCore("SendNotification", {
+	Title = "Executed Sucessfully";
+	Text = "Well Enjoy the Script!";
+})
 
-local InsertedObjects = Instance.new("ScreenGui")
-
---Properties:
-
-InsertedObjects.Name = "InsertedObjects"
-InsertedObjects.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
-
--- Scripts:
-
-local function DIBHE_fake_script() -- InsertedObjects.LocalScript 
-	local script = Instance.new('LocalScript', InsertedObjects)
-
-	local plr = game.Players.LocalPlayer
-	local SGUI = game:GetService("StarterGui")
-	
-	SGUI:SetCore("SendNotification", {
-		Title = "Executed Sucessfully";
-		Text = "Well Enjoy the Script!";
-	})
-	
-	plr.Chatted:Connect(function (msg)
-		if msg == plr.Name or "!Go" then
-			game.ReplicatedStorage.PropertyPurchasing:Destroy()
-			game.ReplicatedStorage.SelectLoadPlot:Destroy()
-			while wait(1) do
-				local part = Instance.new("MeshPart")
-				part.Name = "Gift"
-				part.Parent = game.Workspace
-				plr.Character.HumanoidRootPart.CFrame = part.CFrame + Vector3.new(0,5,0)
-			end
+plr.Chatted:Connect(function (msg)
+	if msg == plr.Name or "!Go" then
+		while wait(1) do
+			local part = Instance.new("MeshPart")
+			part.Name = "Gift"
+			part.Parent = game.Workspace
+			plr.Character.HumanoidRootPart.CFrame = part.CFrame + Vector3.new(0,5,0)
 		end
-	end)
-end
-coroutine.wrap(DIBHE_fake_script)()
+	end
+end)
